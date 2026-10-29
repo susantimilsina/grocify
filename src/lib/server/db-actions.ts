@@ -3,7 +3,6 @@ import { db } from "./db/client";
 import { groceryItems } from "./db/schema";
 
 
-
 export const listGroceryItems = async () => {
     const rows = await db.select().from(groceryItems).orderBy(desc(groceryItems.updated_at));
     return rows;
@@ -52,3 +51,7 @@ export const updateGroceryItemQuantity = async (id: string, quantity: number) =>
 export const deleteGroceryItem = async (id: string) => {
     await db.delete(groceryItems).where(eq(groceryItems.id, id));
 }
+
+export const clearPurchasedGroceryItems = async () => {
+    await db.delete(groceryItems).where(eq(groceryItems.purchased, true));
+}   
