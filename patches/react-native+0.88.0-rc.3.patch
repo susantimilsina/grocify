@@ -1,0 +1,12 @@
+diff --git a/node_modules/react-native/scripts/cocoapods/spm.rb b/node_modules/react-native/scripts/cocoapods/spm.rb
+index f492302..b404e6b 100644
+--- a/node_modules/react-native/scripts/cocoapods/spm.rb
++++ b/node_modules/react-native/scripts/cocoapods/spm.rb
+@@ -22,6 +22,7 @@ class SPMManager
+     flattened_pod_names = []
+     @dependencies_by_pod.each do |pod_name, dependencies|
+       target = project.targets.find { |t| t.name == pod_name}
++      next if target.nil?
+       dependencies.each do |spm_spec|
+         log "Adding SPM dependency on product #{spm_spec[:products]}"
+         add_spm_to_target(
